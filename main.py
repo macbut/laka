@@ -7,5 +7,7 @@ class World:
         pass
 
     def rysujSwiat(self):
+        pass
+
 
 
