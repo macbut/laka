@@ -4,21 +4,22 @@ import pygame
 import math
 
 class Organizm:
-    def __init__(self, strenght, initiative, location):
-        self.ST=strenght
-        self.IE=initiative
-        self.LN=location
+    def __init__(japko, strenght, initiative, location):
+        japko.ST=strenght
+        japko.IE=initiative
+        japko.LN=location
 
-
+height=1000
+width=1000
 clock = pygame.time.Clock()
 pygame.init()
-screen = pygame.display.set_mode((1000,1000))
-Opuz=0
+screen = pygame.display.set_mode((height,width))
+Delay=0
 balls=pygame.image.load('Japan_small_icon.png')
 
 running=True
 while running:
-    Opuz+=1
+    Delay+=1
     screen.fill((65, 229, 76))
     clock.tick(60)
     screen.blit(balls, (372, 372))
