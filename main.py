@@ -27,7 +27,7 @@ balls=pygame.image.load('New_Piskel.png')
 running=True
 while running:
     Delay+=1
-    screen.fill((65, 229, 76))
+    screen.fill((33, 161, 71))
     clock.tick(60)
     screen.blit(balls, (gracza_x, gracza_y))
     for event in pygame.event.get():
