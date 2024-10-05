@@ -8,7 +8,6 @@ class Organizm:
         japko.ST=strenght
         japko.IE=initiative
         japko.LN=location
-
 height=1000
 width=1000
 clock = pygame.time.Clock()
