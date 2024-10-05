@@ -10,16 +10,17 @@ class World:
     def nextTurn(self):
         pass
     def drawWorld(self):
-        Table_of_world=[]
+        self.Table_of_world=[]
         for i in range(1,21):
             Helping_table=[]
             for j in range(1,21):
-                Helping_table.append(j)
-            Table_of_world.append(Helping_table)
+                Helping_table.append(0)
+            self.Table_of_world.append(Helping_table)
 
 class Organism:
-    def __init__(self,id, strenght, initiative, location, world):
+    def __init__(self,id,type, strenght, initiative, location, world):
         self.ID=id
+        self.type=type
         self.ST=strenght
         self.IN=initiative
         self.LN=location

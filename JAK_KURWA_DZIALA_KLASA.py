@@ -16,7 +16,7 @@ Table_of_world = []
 for i in range(1, 21):
     Helping_table = []
     for j in range(1, 21):
-        Helping_table.append(j)
+        Helping_table.append(0)
     Table_of_world.append(Helping_table)
 
 for i in Table_of_world:
