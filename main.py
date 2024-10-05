@@ -4,11 +4,26 @@ import pygame
 import math
 import os
 
-class Organizm:
-    def __init__(japko, strenght, initiative, location):
-        japko.ST=strenght
-        japko.IE=initiative
-        japko.LN=location
+class World:
+    def __init__(self,organisms):
+        self.OR=organisms
+    def nextTurn(self):
+        pass
+    def drawWorld(self):
+        pass
+
+class Organism:
+    def __init__(self, strenght, initiative, location, world):
+        self.ST=strenght
+        self.IN=initiative
+        self.LN=location
+        self.WD=world
+    def action(self):
+        pass
+    def colision(self):
+        pass
+    def drawing(self):
+        pass
 
 pygame.mixer.init()
 pygame.mixer.music.load(os.path.join("Main them.mp3"))
