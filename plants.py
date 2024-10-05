@@ -1,9 +1,11 @@
+import random
+
 from main import Organism
 
-
 class Plant(Organism):
-    pass
-
+    def action(self,id):
+        if random.randint(1,6)==2:
+            pass
 class Grass(Plant):
     pass
 

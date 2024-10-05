@@ -5,15 +5,21 @@ import math
 import os
 
 class World:
-    def __init__(self,organisms):
+    def __init__(self,organisms,):
         self.OR=organisms
     def nextTurn(self):
         pass
     def drawWorld(self):
-        pass
+        Table_of_world=[]
+        for i in range(1,21):
+            Helping_table=[]
+            for j in range(1,21):
+                Helping_table.append(j)
+            Table_of_world.append(Helping_table)
 
 class Organism:
-    def __init__(self, strenght, initiative, location, world):
+    def __init__(self,id, strenght, initiative, location, world):
+        self.ID=id
         self.ST=strenght
         self.IN=initiative
         self.LN=location
