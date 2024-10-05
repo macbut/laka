@@ -16,13 +16,13 @@ pygame.mixer.music.set_volume(0.17)
 pygame.mixer.music.play(-1)
 height=1000
 width=1000
-gracza_x=372
-gracza_y=372
+gracza_x=0
+gracza_y=0
 clock = pygame.time.Clock()
 pygame.init()
 screen = pygame.display.set_mode((height,width))
 Delay=0
-balls=pygame.image.load('Japan_small_icon.png')
+balls=pygame.image.load('New_Piskel.png')
 
 running=True
 while running:
@@ -37,18 +37,18 @@ while running:
     keys = pygame.key.get_pressed()
     # warunki do zmiany pozycji obiektu
     if keys[pygame.K_LEFT]:
-        if gracza_x > 50:
+        if gracza_x > 0:
             gracza_x -= 20
     if keys[pygame.K_RIGHT]:
-        if gracza_x < 950:
+        if gracza_x < 940:
             gracza_x += 20
     if keys[pygame.K_UP]:
-        if gracza_y > 50:
+        if gracza_y > 0:
             gracza_y -= 20
     if keys[pygame.K_DOWN]:
-        if gracza_y < 950:
+        if gracza_y < 940:
             gracza_y += 20
     pygame.display.flip()
-    time.sleep(0.1)
+    time.sleep(0.05)
 
 pygame.quit()
