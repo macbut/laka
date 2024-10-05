@@ -1,6 +1,5 @@
 from main import Organism
 
-
 class Animal(Organism):
     pass
 
