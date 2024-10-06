@@ -73,7 +73,7 @@ running=True
 while running:
     Delay+=1
     clock.tick(60)
-    screen.blit(balls, (gracza_x, gracza_y))
+    sub1.blit(balls, (gracza_x, gracza_y))
     for event in pygame.event.get():
         # zdarzenie zamknięcia programu
         if event.type == pygame.QUIT:
