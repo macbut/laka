@@ -5,7 +5,7 @@ import math
 import os
 
 class World:
-    def __init__(self,organisms,):
+    def __init__(self,organisms):
         self.OR=organisms
     def nextTurn(self):
         pass
@@ -34,17 +34,27 @@ class Organism:
     def drawing(self):
         pass
 
+pygame.font.init()
+font = pygame.font.SysFont(None, 36)
+
+# Funkcja do rysowania tekstu
+def draw_text(surface, text, position, color=(255, 255, 255)):
+    text_surface = font.render(text, True, color)
+    surface.blit(text_surface, position)
+
+#muzyka
 pygame.mixer.init()
 pygame.mixer.music.load(os.path.join("Main them.mp3"))
 pygame.mixer.music.set_volume(0.17)
 pygame.mixer.music.play(-1)
+
 height=1000
 width=1500
 gracza_x=0
 gracza_y=0
 
+#podział ekranu
 screen = pygame.display.set_mode((width,height))
-#konsola i przyciski
 canvas = pygame.Surface((width, height))
 
 laka = pygame.Rect(0, 0, 1000, height)
@@ -62,7 +72,6 @@ sub1 = canvas.subsurface(laka)
 sub2 = canvas.subsurface(console)
 sub3 = canvas.subsurface(buttons)
 
-#screen.fill((33, 161, 71))
 Delay=0
 balls=pygame.image.load('New_Piskel.png')
 
@@ -93,6 +102,9 @@ while running:
         if gracza_y < 940:
             gracza_y += 20
 
+    draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
+
+    #podział ekranu cd.
     screen.blit(sub1, (0, 0))
     screen.blit(sub2, (1000, 0))
     screen.blit(sub3, (1000,900))
