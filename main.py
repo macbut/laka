@@ -18,9 +18,11 @@ class World:
             self.Table_of_world.append(Helping_table)
 
 class Organism:
-    def __init__(self,id,type, strenght, initiative, location, world):
-        self.ID=id
-        self.type=type
+    current_id = 1
+    def __init__(self, strenght, initiative, location, world):
+        self.id=Organism.current_id
+        Organism.current_id += 1
+        #self.type=type
         self.ST=strenght
         self.IN=initiative
         self.LN=location
@@ -36,20 +38,20 @@ pygame.mixer.init()
 pygame.mixer.music.load(os.path.join("Main them.mp3"))
 pygame.mixer.music.set_volume(0.17)
 pygame.mixer.music.play(-1)
-height=1000
 width=1000
+height=1000
 gracza_x=0
 gracza_y=0
 clock = pygame.time.Clock()
 pygame.init()
 screen = pygame.display.set_mode((height,width))
+screen.fill((33, 161, 71))
 Delay=0
 balls=pygame.image.load('New_Piskel.png')
 
 running=True
 while running:
     Delay+=1
-    screen.fill((33, 161, 71))
     clock.tick(60)
     screen.blit(balls, (gracza_x, gracza_y))
     for event in pygame.event.get():
