@@ -3,44 +3,14 @@ import random
 import pygame
 import math
 import os
+from classes_main import Organism,World
+from fauna import Animal,Wolf,Sheep,Viper,Mouse,Hare
+from flora import Plant,Grass,Guarana,Berries
+from commands import draw_text
 
-class World:
-    def __init__(self,organisms):
-        self.OR=organisms
-    def nextTurn(self):
-        pass
-    def drawWorld(self):
-        self.Table_of_world=[]
-        for i in range(1,21):
-            Helping_table=[]
-            for j in range(1,21):
-                Helping_table.append(0)
-            self.Table_of_world.append(Helping_table)
-
-class Organism:
-    current_id = 1
-    def __init__(self, strenght, initiative, location, world):
-        self.id=Organism.current_id
-        Organism.current_id += 1
-        #self.type=type
-        self.ST=strenght
-        self.IN=initiative
-        self.LN=location
-        self.WD=world
-    def action(self):
-        pass
-    def colision(self):
-        pass
-    def drawing(self):
-        pass
 
 pygame.font.init()
 font = pygame.font.SysFont(None, 36)
-
-# Funkcja do rysowania tekstu
-def draw_text(surface, text, position, color=(255, 255, 255)):
-    text_surface = font.render(text, True, color)
-    surface.blit(text_surface, position)
 
 #muzyka
 pygame.mixer.init()
@@ -59,17 +29,17 @@ screen = pygame.display.set_mode((width,height))
 canvas = pygame.Surface((width, height))
 
 laka = pygame.Rect(0, 0, 1000, height)
-console = pygame.Rect(1000, 0, 500, 900)
-buttons = pygame.Rect(1000,900,500,100)
+console = pygame.Rect(1000, 0, 500, 0.9*height)
+buttons = pygame.Rect(1000,0.9*height,500,0.1*height)
 
 background = pygame.Surface((1000, height))
 for i in range(0,1000,50):
     for j in range(0, 1000, 50):
         background.blit(grass,(i,j))
 
-background2 = pygame.Surface((500, 900))
+background2 = pygame.Surface((500, 0.9*height))
 background2.fill((0,0,0))
-background3 = pygame.Surface((500,100))
+background3 = pygame.Surface((500,0.1*height))
 background3.fill((255,255,255))
 
 sub1 = canvas.subsurface(laka)
@@ -111,7 +81,7 @@ while running:
     #podział ekranu cd.
     screen.blit(sub1, (0, 0))
     screen.blit(sub2, (1000, 0))
-    screen.blit(sub3, (1000,900))
+    screen.blit(sub3, (1000,0.9*height))
     sub1.blit(background, (0, 0))
     sub2.blit(background2, (0, 0))
     sub3.blit(background3, (0, 0))
@@ -122,3 +92,12 @@ while running:
     time.sleep(0.05)
 
 pygame.quit()
+
+trawa1 = Grass(1,1,1,1)
+mysz1 = Mouse(1,1,1,1)
+trawa2 = Grass(1,1,1,1)
+mysz2 = Mouse(1,1,1,1)
+print(trawa1.id)
+print(trawa2.id)
+print(mysz1.id)
+print(mysz2.id)

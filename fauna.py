@@ -1,4 +1,4 @@
-from main import Organism
+from classes_main import Organism
 
 class Animal(Organism):
     pass
@@ -15,6 +15,6 @@ class Viper(Animal):
 class Mouse(Animal):
     pass
 
-class Boar(Animal):
+class Hare(Animal):
     pass
 

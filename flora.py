@@ -1,6 +1,6 @@
 import random
 
-from main import Organism
+from classes_main import Organism
 
 class Plant(Organism):
     # def action(self,id):
@@ -15,8 +15,3 @@ class Guarana(Plant):
 
 class Berries(Plant):
     pass
-
-trawa1 = Grass(1,1,1,1)
-trawa2 = Grass(1,1,1,1)
-print(trawa1.id)
-print(trawa2.id)
