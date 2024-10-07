@@ -33,7 +33,7 @@ while running:
     world.drawWorld()
     Delay+=1
     clock.tick(60)
-    sub1.blit(balls, (0, 0))
+    sub1.blit(balls, (500, 500))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -46,7 +46,14 @@ while running:
     trawa.drawing(Grass.image)
     gurana.drawing(Guarana.image)
     berries.drawing(Berries.image)
+
+    World.organisms[5][5] = trawa.action()
+    if World.organisms[5][5] == 0:
+        print(3)
+    else:
+        (World.organisms[5][5]).drawing(Grass.image)
+
     pygame.display.flip()
-    time.sleep(0.05)
+    time.sleep(2)
 
 pygame.quit()
