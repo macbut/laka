@@ -26,14 +26,13 @@ class World:
     sub1 = canvas.subsurface(laka)
     sub2 = canvas.subsurface(console)
     sub3 = canvas.subsurface(buttons)
-    def __init__(self,organisms=True):
-        self.OR=organisms
-        self.Table_of_world=[]
+    def __init__(self,):
+        self.organisms = []
         for i in range(1,21):
-            Helping_table=[]
+            helping_table=[]
             for j in range(1,21):
-                Helping_table.append(0)
-            self.Table_of_world.append(Helping_table)
+                helping_table.append(0)
+            self.organisms.append(helping_table)
     def nextTurn(self):
         pass
     def drawWorld(self):
