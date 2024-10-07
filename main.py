@@ -51,9 +51,10 @@ while running:
     if World.organisms[5][5] == 0:
         print(3)
     else:
+        print("udałos się")
         (World.organisms[5][5]).drawing(Grass.image)
 
     pygame.display.flip()
-    time.sleep(2)
+    time.sleep(0.05)
 
 pygame.quit()
