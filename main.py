@@ -22,7 +22,7 @@ height=1000
 width=1500
 gracza_x=0
 gracza_y=0
-grass = pygame.image.load('resources/grass.jpg')
+grass = pygame.image.load('resources/grassv2.jpg')
 
 #podział ekranu
 screen = pygame.display.set_mode((width,height))
