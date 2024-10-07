@@ -1,13 +1,14 @@
 import random
 import pygame
 
-from classes_main import Organism
+from classes import Organism
 
 class Plant(Organism):
-    # def action(self,id):
-    #     if random.randint(1,6)==2:
-    #         pass
-    pass
+    def action(self,id):
+        if random.randint(1,6)==2:
+            return type(self)
+        else:
+            return 0
 class Grass(Plant):
     image=pygame.image.load('resources/grass - próbne.png')
 class Guarana(Plant):

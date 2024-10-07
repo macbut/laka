@@ -1,4 +1,4 @@
-from classes_main import Organism
+from classes import Organism
 
 class Animal(Organism):
     pass

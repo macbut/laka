@@ -3,7 +3,7 @@ import random
 import pygame
 import math
 import os
-from classes_main import Organism,World
+from classes import Organism,World
 from fauna import Animal,Wolf,Sheep,Viper,Mouse,Hare
 from flora import Plant,Grass,Guarana,Berries
 from commands import draw_text
@@ -50,5 +50,3 @@ while running:
     time.sleep(0.05)
 
 pygame.quit()
-
-
