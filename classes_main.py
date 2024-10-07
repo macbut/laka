@@ -1,3 +1,6 @@
+import pygame
+
+
 class World:
     def __init__(self,organisms):
         self.OR=organisms
@@ -17,13 +20,13 @@ class Organism:
         self.id=Organism.current_id
         Organism.current_id += 1
         #self.type=type
-        self.ST=strenght
-        self.IN=initiative
-        self.LN=location
-        self.WD=world
+        self.strenght=strenght
+        self.initiative=initiative
+        self.location=location
+        self.world=world
     def action(self):
         pass
     def colision(self):
         pass
-    def drawing(self):
-        pass
+    def drawing(self,image):
+        self.world.blit(image,self.location)

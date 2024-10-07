@@ -1,4 +1,5 @@
 import random
+import pygame
 
 from classes_main import Organism
 
@@ -8,10 +9,8 @@ class Plant(Organism):
     #         pass
     pass
 class Grass(Plant):
-    pass
-
+    image=pygame.image.load('resources/grass - próbne.png')
 class Guarana(Plant):
-    pass
-
+    image = pygame.image.load('resources/guarana - próbne.png')
 class Berries(Plant):
-    pass
+    image = pygame.image.load('resources/Berries - próbne.png')

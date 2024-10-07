@@ -58,23 +58,8 @@ while running:
     clock.tick(60)
     sub1.blit(balls, (gracza_x, gracza_y))
     for event in pygame.event.get():
-        # zdarzenie zamknięcia programu
         if event.type == pygame.QUIT:
             running = False
-    keys = pygame.key.get_pressed()
-    # warunki do zmiany pozycji obiektu
-    if keys[pygame.K_LEFT]:
-        if gracza_x > 0:
-            gracza_x -= 20
-    if keys[pygame.K_RIGHT]:
-        if gracza_x < 940:
-            gracza_x += 20
-    if keys[pygame.K_UP]:
-        if gracza_y > 0:
-            gracza_y -= 20
-    if keys[pygame.K_DOWN]:
-        if gracza_y < 940:
-            gracza_y += 20
 
     draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
 
@@ -88,16 +73,15 @@ while running:
     pygame.draw.line(sub1, (255,255,255), (1000, 0), (1000, height), 1)
     pygame.draw.line(sub2, (255,255,255), (0, 0), (0, height), 1)
 
+    trawa = Grass(0, 0, (0, 0), sub1)
+    gurana = Guarana(0,0,(50,50),sub1)
+    berries = Berries(0, 0, (100, 100), sub1)
+    trawa.drawing(Grass.image)
+    gurana.drawing(Guarana.image)
+    berries.drawing(Berries.image)
     pygame.display.flip()
     time.sleep(0.05)
 
 pygame.quit()
 
-trawa1 = Grass(1,1,1,1)
-mysz1 = Mouse(1,1,1,1)
-trawa2 = Grass(1,1,1,1)
-mysz2 = Mouse(1,1,1,1)
-print(trawa1.id)
-print(trawa2.id)
-print(mysz1.id)
-print(mysz2.id)
+
