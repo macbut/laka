@@ -44,7 +44,7 @@ def draw_text(surface, text, position, color=(255, 255, 255)):
 
 #muzyka
 pygame.mixer.init()
-pygame.mixer.music.load(os.path.join("Main them.mp3"))
+pygame.mixer.music.load(os.path.join("resources/Main them.mp3"))
 pygame.mixer.music.set_volume(0.17)
 pygame.mixer.music.play(-1)
 
@@ -52,6 +52,7 @@ height=1000
 width=1500
 gracza_x=0
 gracza_y=0
+grass = pygame.image.load('resources/grass.jpg')
 
 #podział ekranu
 screen = pygame.display.set_mode((width,height))
@@ -62,7 +63,10 @@ console = pygame.Rect(1000, 0, 500, 900)
 buttons = pygame.Rect(1000,900,500,100)
 
 background = pygame.Surface((1000, height))
-background.fill((33, 161, 71))
+for i in range(0,1000,50):
+    for j in range(0, 1000, 50):
+        background.blit(grass,(i,j))
+
 background2 = pygame.Surface((500, 900))
 background2.fill((0,0,0))
 background3 = pygame.Surface((500,100))
@@ -73,7 +77,7 @@ sub2 = canvas.subsurface(console)
 sub3 = canvas.subsurface(buttons)
 
 Delay=0
-balls=pygame.image.load('New_Piskel.png')
+balls=pygame.image.load('resources/New_Piskel.png')
 
 pygame.init()
 clock = pygame.time.Clock()
