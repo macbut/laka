@@ -4,7 +4,7 @@ import pygame
 import math
 import os
 from classes import Organism,World
-from fauna import Animal,Wolf,Sheep,Viper,Mouse,Hare
+from fauna import Animal,Wolf,Sheep,Viper,Mouse,Boar
 from flora import Plant,Grass,Guarana,Berries
 from commands import draw_text
 
@@ -30,7 +30,7 @@ running=True
 while running:
     world = World()
     world.drawWorld()
-    Delay+=1
+    Delay += 1
     clock.tick(60)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -39,18 +39,23 @@ while running:
     draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
 
     trawa = Grass(0, 0, (0, 0), sub1)
-    gurana = Guarana(0,0,(50,50),sub1)
-    berries = Berries(0, 0, (100, 100), sub1)
-    trawa.drawing(Grass.image)
-    gurana.drawing(Guarana.image)
-    berries.drawing(Berries.image)
+    dzik = Boar(6,3,(50,50),sub1)
+    owca = Sheep(4,4,(100,100),sub1)
+    zmija = Viper(2,3,(150,150),sub1)
+    wilk = Wolf(9,5,(200,200),sub1)
+
+    trawa.drawing()
+    dzik.drawing()
+    owca.drawing()
+    zmija.drawing()
+    wilk.drawing()
 
     World.organisms[5][5] = trawa.action()
     if World.organisms[5][5] == 0:
         print(3)
     else:
         print("udałos się")
-        (World.organisms[5][5]).drawing(Grass.image)
+        (World.organisms[5][5]).drawing()
 
     pygame.display.flip()
     time.sleep(0.05)

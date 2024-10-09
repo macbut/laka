@@ -10,8 +10,10 @@ class Plant(Organism):
         else:
             return 0
 class Grass(Plant):
-    image=pygame.image.load('resources/grass.png')
+    image=pygame.image.load('resources/tallgrass.png')
 class Guarana(Plant):
-    image = pygame.image.load('')
+    # image = pygame.image.load('')
+    pass
 class Berries(Plant):
-    image = pygame.image.load('')
+    # image = pygame.image.load('')
+    pass

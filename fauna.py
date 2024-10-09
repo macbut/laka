@@ -11,7 +11,7 @@ class Sheep(Animal):
     image=pygame.image.load('resources/owcag.png')
 
 class Viper(Animal):
-    pass
+    image=pygame.image.load('resources/viper.png')
 
 class Mouse(Animal):
     pass

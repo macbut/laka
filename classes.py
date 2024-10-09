@@ -2,7 +2,7 @@ import pygame
 
 
 class World:
-    height = 1000
+    height = 800
     width = 1500
     grass = pygame.image.load('resources/grassv2.jpg')
 
@@ -62,5 +62,5 @@ class Organism:
         pass
     def colision(self):
         pass
-    def drawing(self,image):
-        self.world.blit(image,self.location)
+    def drawing(self):
+        self.world.blit(self.image,self.location)
