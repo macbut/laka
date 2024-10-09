@@ -1,13 +1,14 @@
 from classes import Organism
+import pygame
 
 class Animal(Organism):
     pass
 
 class Wolf(Animal):
-    pass
+    image = pygame.image.load('resources/wolf.png')
 
 class Sheep(Animal):
-    pass
+    image=pygame.image.load('resources/owcag.png')
 
 class Viper(Animal):
     pass
@@ -15,6 +16,6 @@ class Viper(Animal):
 class Mouse(Animal):
     pass
 
-class Hare(Animal):
-    pass
+class Boar(Animal):
+    image=pygame.image.load('resources/boar.png')
 

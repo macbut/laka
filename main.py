@@ -22,7 +22,6 @@ pygame.mixer.music.set_volume(0.17)
 pygame.mixer.music.play(-1)
 
 Delay=0
-balls=pygame.image.load('resources/New_Piskel.png')
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -33,7 +32,6 @@ while running:
     world.drawWorld()
     Delay+=1
     clock.tick(60)
-    sub1.blit(balls, (500, 500))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
