@@ -31,7 +31,7 @@ class World:
     for i in range(1, 21):
         helping_table = []
         for j in range(1, 21):
-            helping_table.append(0)
+            helping_table.append('')
         organisms.append(helping_table)
 
     def __init__(self):
@@ -50,12 +50,9 @@ class World:
 
 class Organism:
     current_id = 1
-    def __init__(self, strenght, initiative, location, world):
+    def __init__(self, location, world):
         self.id=Organism.current_id
         Organism.current_id += 1
-        #self.type=type
-        self.strenght=strenght
-        self.initiative=initiative
         self.location=location
         self.world=world
     def action(self):
