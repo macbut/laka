@@ -12,6 +12,8 @@ sub1 = World.sub1
 sub2 = World.sub2
 sub3 = World.sub3
 
+organisms = [Grass,Guarana,Berries,Wolf,Sheep,Viper,Mouse,Boar]
+
 pygame.font.init()
 font = pygame.font.SysFont(None, 36)
 
@@ -39,19 +41,13 @@ while running:
     draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
 
     if delay == 1:
-        position = (random.randrange(0, 1000, 50), random.randrange(0, 1000, 50))
-        organism = Grass(position, sub1)
-        World.organisms[position[0]/50][position[1]/50] = organism
-
-        dzik = Boar(loc_gen(World.organisms), sub1)
-        owca = Sheep(loc_gen(World.organisms), sub1)
-        zmija = Viper(loc_gen(World.organisms), sub1)
-        wilk = Wolf(loc_gen(World.organisms), sub1)
-        guarana = Guarana(loc_gen(World.organisms), sub1)
-        jagody = Berries(loc_gen(World.organisms), sub1)
-        mysz = Mouse(loc_gen(World.organisms), sub1)
-
-
+        for i in range(2):
+            for j in range(8):
+                position = loc_gen(World.organisms)
+                print(position)
+                organism = organisms[j](position, sub1)
+                print(organism)
+                World.organisms[int(position[0] / 50)][int(position[1] / 50)] = organism
 
     # World.organisms[5][5] = trawa.action()
     # if World.organisms[5][5] == 0:
@@ -59,6 +55,14 @@ while running:
     # else:
     #     print("udałos się")
     #     (World.organisms[5][5]).drawing()
+
+        # rysowanie wszystkich organizmów
+        for i in range(20):
+            for j in range(20):
+                if World.organisms[i][j] == '':
+                    pass
+                else:
+                    World.organisms[i][j].drawing()
 
     pygame.display.flip()
     time.sleep(0.05)

@@ -2,7 +2,7 @@ import pygame
 
 
 class World:
-    height = 800
+    height = 1000
     width = 1500
     grass = pygame.image.load('resources/grassv2.jpg')
 
@@ -28,9 +28,9 @@ class World:
     sub3 = canvas.subsurface(buttons)
 
     organisms = []
-    for i in range(1, 21):
+    for i in range(20):
         helping_table = []
-        for j in range(1, 21):
+        for j in range(20):
             helping_table.append('')
         organisms.append(helping_table)
 
