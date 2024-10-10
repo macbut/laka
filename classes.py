@@ -47,6 +47,12 @@ class World:
         World.sub3.blit(World.background3, (0, 0))
         pygame.draw.line(World.sub1, (255, 255, 255), (1000, 0), (1000, World.height), 1)
         pygame.draw.line(World.sub2, (255, 255, 255), (0, 0), (0, World.height), 1)
+        for i in range(20):
+            for j in range(20):
+                if World.organisms[i][j] == '':
+                    pass
+                else:
+                    World.organisms[i][j].drawing()
 
 class Organism:
     current_id = 1
