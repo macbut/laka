@@ -56,13 +56,13 @@ while running:
     #     print("udałos się")
     #     (World.organisms[5][5]).drawing()
 
-        # rysowanie wszystkich organizmów
-        for i in range(20):
-            for j in range(20):
-                if World.organisms[i][j] == '':
-                    pass
-                else:
-                    World.organisms[i][j].drawing()
+    # rysowanie wszystkich organizmów
+    for i in range(20):
+        for j in range(20):
+            if World.organisms[i][j] == '':
+                pass
+            else:
+                World.organisms[i][j].drawing()
 
     pygame.display.flip()
     time.sleep(0.05)
