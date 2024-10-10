@@ -45,7 +45,10 @@ while running:
             for j in range(8):
                 position = loc_gen(World.organisms)
                 organism = organisms[j](position, sub1)
-                World.organisms[int(position[0] / 50)][int(position[1] / 50)] = organism
+                World.organisms[position[0]][position[1]] = organism
+                organism.loc_check()
+                print(organism.position)
+                print(type(organism))
 
     # World.organisms[5][5] = trawa.action()
     # if World.organisms[5][5] == 0:

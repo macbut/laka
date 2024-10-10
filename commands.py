@@ -11,8 +11,8 @@ def draw_text(surface, text, position, color=(255, 255, 255)):
     surface.blit(text_surface, position)
 
 def loc_gen(organisms):
-    position = (random.randrange(0,1000,50),random.randrange(0,1000,50))
-    if organisms[int(position[0]/50)][int(position[1]/50)] == '':
+    position = (random.randrange(20),random.randrange(20))
+    if organisms[position[0]][position[1]] == '':
         return position
     else:
         return loc_gen(organisms)

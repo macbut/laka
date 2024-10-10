@@ -56,14 +56,48 @@ class World:
 
 class Organism:
     current_id = 1
-    def __init__(self, location, world):
+    def __init__(self, position, world):
         self.id=Organism.current_id
         Organism.current_id += 1
-        self.location=location
+        self.position=position
         self.world=world
     def action(self):
         pass
     def colision(self):
         pass
     def drawing(self):
-        self.world.blit(self.image,self.location)
+        self.world.blit(self.image,(self.position[0]*50,self.position[1]*50))
+
+    def loc_check(self, organisms=World.organisms):
+        position = self.position
+        x = position[0]
+        y = position[1]
+        empty = []
+        full = []
+        if x - 1 < 0:
+            full.append('l')
+        elif organisms[x - 1][y] != '':
+            full.append('l')
+        else:
+            empty.append('l')
+        if x + 1 > 19:
+            full.append('r')
+        elif organisms[x + 1][y] != '':
+            full.append('r')
+        else:
+            empty.append('r')
+        if y - 1 < 0:
+            full.append('u')
+        elif organisms[x][y - 1] != '':
+            full.append('u')
+        else:
+            empty.append('u')
+        if y + 1 > 19:
+            full.append('d')
+        elif organisms[x][y + 1] != '':
+            full.append('d')
+        else:
+            empty.append('d')
+
+        print(empty)
+        print(full)
