@@ -4,7 +4,7 @@ import pygame
 class World:
     height = 1000
     width = 1500
-    grass = pygame.image.load('resources/grassv2.jpg')
+    grass = pygame.image.load('resources/grassv2-inna-ramka.jpg')
 
     screen = pygame.display.set_mode((width, height))
     canvas = pygame.Surface((width, height))
