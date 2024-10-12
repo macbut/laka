@@ -43,23 +43,20 @@ while running:
     if delay == 1:
         for i in range(2):
             for j in range(8):
-                position = loc_gen(World.organisms)
+                position = loc_gen(world.organisms)
                 organism = organisms[j](position, sub1)
-                World.organisms[position[0]][position[1]] = organism
-                organism.loc_check()
-                print(organism.position)
-                print(type(organism))
+                world.organisms[position[0]][position[1]] = organism
 
-    # World.organisms[5][5] = trawa.action()
-    # if World.organisms[5][5] == 0:
-    #     print(3)
-    # else:
-    #     print("udałos się")
-    #     (World.organisms[5][5]).drawing()
+    for i in range(20):
+        for j in range(20):
+            if type(world.organisms[i][j]).__name__ == "Grass":
+                organism = world.organisms[i][j].action()
+                if type(organism) != int:
+                    world.organisms[organism.position[0]][organism.position[1]] = organism
 
     world.drawWorld()
 
     pygame.display.flip()
-    time.sleep(0.05)
+    time.sleep(2)
 
 pygame.quit()

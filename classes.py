@@ -73,31 +73,29 @@ class Organism:
         x = position[0]
         y = position[1]
         empty = []
-        full = []
         if x - 1 < 0:
-            full.append('l')
+            pass
         elif organisms[x - 1][y] != '':
-            full.append('l')
+            pass
         else:
             empty.append('l')
         if x + 1 > 19:
-            full.append('r')
+            pass
         elif organisms[x + 1][y] != '':
-            full.append('r')
+            pass
         else:
             empty.append('r')
         if y - 1 < 0:
-            full.append('u')
+            pass
         elif organisms[x][y - 1] != '':
-            full.append('u')
+            pass
         else:
             empty.append('u')
         if y + 1 > 19:
-            full.append('d')
+            pass
         elif organisms[x][y + 1] != '':
-            full.append('d')
+            pass
         else:
             empty.append('d')
 
-        print(empty)
-        print(full)
+        return empty
