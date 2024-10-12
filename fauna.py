@@ -1,9 +1,17 @@
-from classes import Organism
+import random
+
+from classes import Organism, World
 import pygame
 
 
 class Animal(Organism):
-    pass
+    def action(self):
+        move_to = self.gamble()
+        def move():
+            World.organisms[move_to[0]][move_to[1]] = self
+            World.organisms[self.position[0]][self.position[1]] = ''
+            self.position = move_to
+        move()
 
 
 class Wolf(Animal):

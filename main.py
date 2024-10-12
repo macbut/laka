@@ -27,6 +27,7 @@ delay=0
 
 pygame.init()
 clock = pygame.time.Clock()
+# losowanie pozycji pierwszych organizmów
 for i in range(2):
     for j in range(8):
         position = loc_gen(World.organisms)
@@ -35,7 +36,7 @@ for i in range(2):
 
 running=True
 while running:
-    time.sleep(0.5)
+    time.sleep(1)
     world = World()
     delay += 1
     clock.tick(60)
@@ -43,7 +44,11 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
-    # losowanie pozycji pierwszych organizmów
+
+    for i in range(20):
+        for j in range(20):
+            if type(world.organisms[i][j]).__name__ == "Wolf":
+                world.organisms[i][j].action()
 
     if delay>2:
         tab=[]
@@ -76,6 +81,6 @@ while running:
                     world.organisms[organism.position[0]][organism.position[1]] = organism
     print("---------------------------------",delay,"---------------------------------")
     world.drawWorld()
-    pygame.display.flip()
+    pygame.display.update()
 
 pygame.quit()

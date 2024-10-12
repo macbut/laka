@@ -1,3 +1,5 @@
+import random
+
 import pygame
 
 
@@ -99,3 +101,26 @@ class Organism:
             empty.append('d')
 
         return empty
+
+    def gamble(self):
+        i = random.randint(1,4)
+        if i == 1:
+            if self.position[0]+1 < 19:
+                return self.position[0]+1,self.position[1]
+            else:
+                return self.gamble()
+        elif i == 2:
+            if self.position[0]-1 > 0:
+                return self.position[0]-1,self.position[1]
+            else:
+                return self.gamble()
+        elif i == 3:
+            if self.position[1]+1 < 19:
+                return self.position[0],self.position[1]+1
+            else:
+                return self.gamble()
+        elif i == 4:
+            if self.position[1]-1 > 0:
+                return self.position[0],self.position[1]-1
+            else:
+                return self.gamble()
