@@ -55,35 +55,34 @@ while running:
                     if type(world.organisms[i][j]).__name__ == "Wolf":
                         world.organisms[i][j].action()
         if If_pressed_one==1:
-            if delay%10==2:
-                tab=[]
-                for i in range(20):
-                    for j in range(20):
-                        if type(world.organisms[i][j]).__name__ == "Grass":
-                            tab.append((i,j))
-                for i in tab:
-                    if type(world.organisms[i[0]][i[1]]).__name__ == "Grass":
-                        organism = world.organisms[i[0]][i[1]].action(6)
-                        if type(organism) != int:
-                            world.organisms[organism.position[0]][organism.position[1]] = organism
-                for i in range(20):
-                    for j in range(20):
-                        if type(world.organisms[i][j]).__name__ == "Guarana":
-                            tab.append((i,j))
-                for i in tab:
-                    if type(world.organisms[i[0]][i[1]]).__name__ == "Guarana":
-                        organism = world.organisms[i[0]][i[1]].action(10)
-                        if type(organism) != int:
-                            world.organisms[organism.position[0]][organism.position[1]] = organism
-                for i in range(20):
-                    for j in range(20):
-                        if type(world.organisms[i][j]).__name__ == "Berries":
-                            tab.append((i,j))
-                for i in tab:
-                    if type(world.organisms[i[0]][i[1]]).__name__ == "Berries":
-                        organism = world.organisms[i[0]][i[1]].action(10)
-                        if type(organism) != int:
-                            world.organisms[organism.position[0]][organism.position[1]] = organism
+            tab=[]
+            for i in range(20):
+                for j in range(20):
+                    if type(world.organisms[i][j]).__name__ == "Grass":
+                        tab.append((i,j))
+            for i in tab:
+                if type(world.organisms[i[0]][i[1]]).__name__ == "Grass":
+                    organism = world.organisms[i[0]][i[1]].action(6)
+                    if type(organism) != int:
+                        world.organisms[organism.position[0]][organism.position[1]] = organism
+            for i in range(20):
+                for j in range(20):
+                    if type(world.organisms[i][j]).__name__ == "Guarana":
+                        tab.append((i,j))
+            for i in tab:
+                if type(world.organisms[i[0]][i[1]]).__name__ == "Guarana":
+                    organism = world.organisms[i[0]][i[1]].action(10)
+                    if type(organism) != int:
+                        world.organisms[organism.position[0]][organism.position[1]] = organism
+            for i in range(20):
+                for j in range(20):
+                    if type(world.organisms[i][j]).__name__ == "Berries":
+                        tab.append((i,j))
+            for i in tab:
+                if type(world.organisms[i[0]][i[1]]).__name__ == "Berries":
+                    organism = world.organisms[i[0]][i[1]].action(10)
+                    if type(organism) != int:
+                        world.organisms[organism.position[0]][organism.position[1]] = organism
         print("---------------------------------",delay,"---------------------------------")
         world.drawWorld()
         pygame.display.update()
