@@ -54,7 +54,15 @@ while running:
                 for j in range(20):
                     if type(world.organisms[i][j]).__name__ == "Wolf":
                         world.organisms[i][j].action()
-        if If_pressed_one==1:
+                    if type(world.organisms[i][j]).__name__ == "Sheep":
+                        world.organisms[i][j].action()
+                    if type(world.organisms[i][j]).__name__ == "Viper":
+                        world.organisms[i][j].action()
+                    if type(world.organisms[i][j]).__name__ == "Mouse":
+                        world.organisms[i][j].action()
+                    if type(world.organisms[i][j]).__name__ == "Boar":
+                        world.organisms[i][j].action()
+
             tab=[]
             for i in range(20):
                 for j in range(20):
