@@ -24,9 +24,10 @@ pygame.mixer.music.set_volume(0.17)
 pygame.mixer.music.play(-1)
 
 delay=0
-
+os.environ['SDL_AUDIODRIVER'] = 'dsp'
 pygame.init()
 clock = pygame.time.Clock()
+If_pressed_one=0
 # losowanie pozycji pierwszych organizmów
 for i in range(2):
     for j in range(8):
@@ -36,51 +37,56 @@ for i in range(2):
 
 running=True
 while running:
-    time.sleep(1)
-    world = World()
-    delay += 1
-    clock.tick(60)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-    draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
-
-    for i in range(20):
-        for j in range(20):
-            if type(world.organisms[i][j]).__name__ == "Wolf":
-                world.organisms[i][j].action()
-
-    if delay>2:
-        tab=[]
-        for i in range(20):
-            for j in range(20):
-                if type(world.organisms[i][j]).__name__ == "Grass":
-                    tab.append((i,j))
-        for i in tab:
-            if type(world.organisms[i[0]][i[1]]).__name__ == "Grass":
-                organism = world.organisms[i[0]][i[1]].action(6)
-                if type(organism) != int:
-                    world.organisms[organism.position[0]][organism.position[1]] = organism
-        for i in range(20):
-            for j in range(20):
-                if type(world.organisms[i][j]).__name__ == "Guarana":
-                    tab.append((i,j))
-        for i in tab:
-            if type(world.organisms[i[0]][i[1]]).__name__ == "Guarana":
-                organism = world.organisms[i[0]][i[1]].action(10)
-                if type(organism) != int:
-                    world.organisms[organism.position[0]][organism.position[1]] = organism
-        for i in range(20):
-            for j in range(20):
-                if type(world.organisms[i][j]).__name__ == "Berries":
-                    tab.append((i,j))
-        for i in tab:
-            if type(world.organisms[i[0]][i[1]]).__name__ == "Berries":
-                organism = world.organisms[i[0]][i[1]].action(10)
-                if type(organism) != int:
-                    world.organisms[organism.position[0]][organism.position[1]] = organism
-    print("---------------------------------",delay,"---------------------------------")
-    world.drawWorld()
-    pygame.display.update()
+        world = World()
+        if pygame.mouse.get_pos()[0]>1010 and pygame.mouse.get_pos()[1]>910 and pygame.mouse.get_pos()[0]<1110 and pygame.mouse.get_pos()[1]<960:
+            if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
+                    If_pressed_one=1
+                    print(If_pressed_one)
+                    time.sleep(0.15)
+        delay += 1
+        clock.tick(60)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
+        if If_pressed_one==1:
+            for i in range(20):
+                for j in range(20):
+                    if type(world.organisms[i][j]).__name__ == "Wolf":
+                        world.organisms[i][j].action()
+        if If_pressed_one==1:
+            if delay%10==2:
+                tab=[]
+                for i in range(20):
+                    for j in range(20):
+                        if type(world.organisms[i][j]).__name__ == "Grass":
+                            tab.append((i,j))
+                for i in tab:
+                    if type(world.organisms[i[0]][i[1]]).__name__ == "Grass":
+                        organism = world.organisms[i[0]][i[1]].action(6)
+                        if type(organism) != int:
+                            world.organisms[organism.position[0]][organism.position[1]] = organism
+                for i in range(20):
+                    for j in range(20):
+                        if type(world.organisms[i][j]).__name__ == "Guarana":
+                            tab.append((i,j))
+                for i in tab:
+                    if type(world.organisms[i[0]][i[1]]).__name__ == "Guarana":
+                        organism = world.organisms[i[0]][i[1]].action(10)
+                        if type(organism) != int:
+                            world.organisms[organism.position[0]][organism.position[1]] = organism
+                for i in range(20):
+                    for j in range(20):
+                        if type(world.organisms[i][j]).__name__ == "Berries":
+                            tab.append((i,j))
+                for i in tab:
+                    if type(world.organisms[i[0]][i[1]]).__name__ == "Berries":
+                        organism = world.organisms[i[0]][i[1]].action(10)
+                        if type(organism) != int:
+                            world.organisms[organism.position[0]][organism.position[1]] = organism
+        print("---------------------------------",delay,"---------------------------------")
+        world.drawWorld()
+        pygame.display.update()
+        If_pressed_one=0
 
 pygame.quit()

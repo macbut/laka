@@ -12,7 +12,7 @@ class Plant(Organism):
         if len(empty) == 0:
             return 0
         elif random.randint(1,cos)==2:
-            print("udało się")
+            # print("udało się")
             i = random.randint(0,len(empty)-1)
             loc = empty[i]
             if loc == 'r':
@@ -25,7 +25,7 @@ class Plant(Organism):
                 position = (self.position[0],self.position[1]+1)
             return type(self)(position,World.sub1)
         else:
-            print("nie udało się")
+            # print("nie udało się")
             return 0
 
 
