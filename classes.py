@@ -2,8 +2,8 @@ import random
 import pygame
 
 class World:
-    height = 1000
-    width = 1500
+    height = 800
+    width = 1300
     grass = pygame.image.load('resources/grassv2-inna-ramka.jpg')
     Button_next = pygame.image.load("resources/guzik_następny_na_szybko.png")
 
@@ -11,17 +11,17 @@ class World:
     canvas = pygame.Surface((width, height))
 
     laka = pygame.Rect(0, 0, 1000, height)
-    console = pygame.Rect(1000, 0, 500, 0.9 * height)
-    buttons = pygame.Rect(1000, 0.9 * height, 500, 0.1 * height)
+    console = pygame.Rect(800, 0, 500, 0.85 * height)
+    buttons = pygame.Rect(800, 0.9 * height, 500, 0.15 * height)
 
-    background = pygame.Surface((1000, height))
-    for i in range(0, 1000, 50):
-        for j in range(0, 1000, 50):
+    background = pygame.Surface((800, height))
+    for i in range(0, 800, 40):
+        for j in range(0, 800, 40):
             background.blit(grass, (i, j))
 
-    background2 = pygame.Surface((500, 0.9 * height))
+    background2 = pygame.Surface((500, 0.85 * height))
     background2.fill((0, 0, 0))
-    background3 = pygame.Surface((500, 0.1 * height))
+    background3 = pygame.Surface((500, 0.15 * height))
     background3.fill((255, 255, 255))
 
     sub1 = canvas.subsurface(laka)
@@ -41,14 +41,14 @@ class World:
         pass
     def drawWorld(self):
         World.screen.blit(World.sub1, (0, 0))
-        World.screen.blit(World.sub2, (1000, 0))
-        World.screen.blit(World.sub3, (1000, 0.9 * World.height))
+        World.screen.blit(World.sub2, (800, 0))
+        World.screen.blit(World.sub3, (800, 0.85 * World.height))
         World.sub1.blit(World.background, (0, 0))
         World.sub2.blit(World.background2, (0, 0))
         World.sub3.blit(World.background3, (0, 0))
         World.sub3.blit(World.background3, (0, 0))
-        World.canvas.blit(World.Button_next,(1010,0.9 * World.height + 10))
-        pygame.draw.line(World.sub1, (255, 255, 255), (1000, 0), (1000, World.height), 1)
+        World.canvas.blit(World.Button_next,(810,0.85 * World.height + 10))
+        pygame.draw.line(World.sub1, (255, 255, 255), (800, 0), (800, World.height), 1)
         pygame.draw.line(World.sub2, (255, 255, 255), (0, 0), (0, World.height), 1)
         for i in range(20):
             for j in range(20):
