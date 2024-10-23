@@ -38,7 +38,7 @@ for i in range(2):
 running=True
 while running:
         world = World()
-        if pygame.mouse.get_pos()[0]>1010 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<1110 and pygame.mouse.get_pos()[1]<740:
+        if pygame.mouse.get_pos()[0]>810 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<910 and pygame.mouse.get_pos()[1]<740:
             if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
                     If_pressed_one=1
                     print(If_pressed_one)
