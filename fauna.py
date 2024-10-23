@@ -7,6 +7,7 @@ import pygame
 class Animal(Organism):
     def action(self):
         move_to = self.gamble()
+        print(move_to,"gdzie ma iść")
         def move():
             World.organisms[move_to[0]][move_to[1]] = self
             World.organisms[self.position[0]][self.position[1]] = ''

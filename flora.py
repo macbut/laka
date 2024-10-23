@@ -12,7 +12,6 @@ class Plant(Organism):
         if len(empty) == 0:
             return 0
         elif random.randint(1,cos)==2:
-            # print("udało się")
             i = random.randint(0,len(empty)-1)
             loc = empty[i]
             if loc == 'r':
