@@ -69,7 +69,7 @@ class Organism:
     def colision(self):
         pass
     def drawing(self):
-        self.world.blit(self.image,(self.position[0]*50,self.position[1]*50))
+        self.world.blit(self.image,(self.position[0]*40,self.position[1]*40))
 
     def loc_check(self, organisms=World.organisms):
         position = self.position
