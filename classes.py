@@ -10,9 +10,9 @@ class World:
     screen = pygame.display.set_mode((width, height))
     canvas = pygame.Surface((width, height))
 
-    laka = pygame.Rect(0, 0, 1000, height)
+    laka = pygame.Rect(0, 0, 800, height)
     console = pygame.Rect(800, 0, 500, 0.85 * height)
-    buttons = pygame.Rect(800, 0.9 * height, 500, 0.15 * height)
+    buttons = pygame.Rect(800, 0.85 * height, 500, 0.15 * height)
 
     background = pygame.Surface((800, height))
     for i in range(0, 800, 40):
