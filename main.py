@@ -1,6 +1,5 @@
 import time
 import random
-from collections.abc import Mapping
 
 import pygame
 import math
@@ -51,38 +50,14 @@ while running:
                 running = False
         draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
         if If_pressed_one==1:
-            mapping_organisms=World.organisms
+            org=[]
             for i in range(20):
                 for j in range(20):
-                    if mapping_organisms[i][j]!="":
-                        print(type(mapping_organisms[i][j]).__name__)
-            for i in range(20):
-                for j in range(20):
-                    world.organisms[i][j].action()
-                    if type(mapping_organisms[i][i]).__name__ == "Grass":
-                        organism = world.organisms[i][i].action(6)
-                        print(organism)
-                        if type(organism) != int:
-                            world.organisms[organism.position[0]][organism.position[1]] = organism
-                    # if type(mapping_organisms[i][j]).__name__ == "Guarana":
-                    #     organism = world.organisms[i[0]][i[1]].action(10)
-                    #     if type(organism) != int:
-                    #         world.organisms[organism.position[0]][organism.position[1]] = organism
-                    # if type(mapping_organisms[i[0]][i[1]]).__name__ == "Guarana":
-                    #     organism = world.organisms[i[0]][i[1]].action(10)
-                    #     if type(organism) != int:
-                    #         world.organisms[organism.position[0]][organism.position[1]] = organism
-                # for i in range(20):
-                #     for j in range(20):
-                #         if type(world.organisms[i][j]).__name__ == "Berries":
-                #             tab.append((i,j))
-                # for i in tab:
-                #     if type(world.organisms[i[0]][i[1]]).__name__ == "Berries":
-                #         organism = world.organisms[i[0]][i[1]].action(10)
-                #         if type(organism) != int:
-                #             world.organisms[organism.position[0]][organism.position[1]] = organism
+                    if world.organisms[i][j] != '':
+                        org.append(world.organisms[i][j])
+            for i in org:
+                i.action()
         # print("---------------------------------",delay,"---------------------------------")
-        mapping_organisms=[]
         world.drawWorld()
         pygame.display.update()
         If_pressed_one=0
