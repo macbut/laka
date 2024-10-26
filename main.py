@@ -70,7 +70,16 @@ while running:
                         sort_org[j], sort_org[j + 1] = sort_org[j + 1], sort_org[j]
             sort_org=sort_org[::-1]
             for i in sort_org:
-                i[0].action()
+                print(i[0])
+                for j in range(1,900000000000):
+                    if If_pressed_two==1:
+                        i[0].action()
+                        If_pressed_two=0
+                    if pygame.mouse.get_pos()[0] > 910 and pygame.mouse.get_pos()[1] > 690 and pygame.mouse.get_pos()[
+                        0] < 1010 and pygame.mouse.get_pos()[1] < 740:
+                        if (pygame.mouse.get_pressed(num_buttons=3)[0]) == True:
+                            If_pressed_two = 1
+
 
         # print("---------------------------------",delay,"---------------------------------")
         world.drawWorld()
