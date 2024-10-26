@@ -6,6 +6,7 @@ class World:
     width = 1300
     grass = pygame.image.load('resources/grassv2-inna-ramka.jpg')
     Button_next = pygame.image.load("resources/guzik_następny_na_szybko.png")
+    Button_next_orgazm = pygame.image.load("resources/guzik_następny_na_szybko_ale_dwa.png")
 
     screen = pygame.display.set_mode((width, height))
     canvas = pygame.Surface((width, height))
@@ -48,6 +49,7 @@ class World:
         World.sub3.blit(World.background3, (0, 0))
         World.sub3.blit(World.background3, (0, 0))
         World.canvas.blit(World.Button_next,(810,0.85 * World.height + 10))
+        World.canvas.blit(World.Button_next_orgazm, (910, 0.85 * World.height + 10))
         pygame.draw.line(World.sub1, (255, 255, 255), (800, 0), (800, World.height), 1)
         pygame.draw.line(World.sub2, (255, 255, 255), (0, 0), (0, World.height), 1)
         for i in range(20):

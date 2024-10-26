@@ -29,6 +29,7 @@ os.environ['SDL_AUDIODRIVER'] = 'dsp'
 pygame.init()
 clock = pygame.time.Clock()
 If_pressed_one=0
+If_pressed_two=0
 # losowanie pozycji pierwszych organizmów
 for i in range(2):
     for j in range(8):
@@ -43,13 +44,17 @@ while running:
             if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
                     If_pressed_one=1
                     time.sleep(0.15)
+        if pygame.mouse.get_pos()[0]>910 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<1010 and pygame.mouse.get_pos()[1]<740:
+            if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
+                    If_pressed_two=1
+                    time.sleep(0.15)
         delay += 1
         clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
         draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
-        if If_pressed_one==1:
+        if If_pressed_one==1 or If_pressed_two==1:
             org=[]
             sort_org=[]
             for i in range(20):
@@ -66,6 +71,7 @@ while running:
             sort_org=sort_org[::-1]
             for i in sort_org:
                 i[0].action()
+
         # print("---------------------------------",delay,"---------------------------------")
         world.drawWorld()
         pygame.display.update()
