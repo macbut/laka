@@ -28,8 +28,9 @@ delay=0
 os.environ['SDL_AUDIODRIVER'] = 'dsp'
 pygame.init()
 clock = pygame.time.Clock()
-If_pressed_one=0
-If_pressed_two=0
+pressed_one=0
+pressed_two=0
+counter = 0
 # losowanie pozycji pierwszych organizmów
 for i in range(2):
     for j in range(8):
@@ -39,51 +40,51 @@ for i in range(2):
 
 running=True
 while running:
-        world = World()
-        if pygame.mouse.get_pos()[0]>810 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<910 and pygame.mouse.get_pos()[1]<740:
-            if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
-                    If_pressed_one=1
-                    time.sleep(0.15)
-        if pygame.mouse.get_pos()[0]>910 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<1010 and pygame.mouse.get_pos()[1]<740:
-            if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
-                    If_pressed_two=1
-                    time.sleep(0.15)
-        delay += 1
-        clock.tick(60)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
-        if If_pressed_one==1 or If_pressed_two==1:
-            org=[]
-            sort_org=[]
-            for i in range(20):
-                for j in range(20):
-                    if world.organisms[i][j] != '':
-                        org.append(world.organisms[i][j])
-            for i in org:
-                sort_org.append((i,i.ini,i.age))
-            size=len(sort_org)
-            for i in range(size):
-                for j in range(0, size - i - 1):
-                    if sort_org[j][1] > sort_org[j + 1][1]:
-                        sort_org[j], sort_org[j + 1] = sort_org[j + 1], sort_org[j]
-            sort_org=sort_org[::-1]
-            for i in sort_org:
-                print(i[0])
-                for j in range(1,900000000000):
-                    if If_pressed_two==1:
-                        i[0].action()
-                        If_pressed_two=0
-                    if pygame.mouse.get_pos()[0] > 910 and pygame.mouse.get_pos()[1] > 690 and pygame.mouse.get_pos()[
-                        0] < 1010 and pygame.mouse.get_pos()[1] < 740:
-                        if (pygame.mouse.get_pressed(num_buttons=3)[0]) == True:
-                            If_pressed_two = 1
+    world = World()
+    if pygame.mouse.get_pos()[0]>810 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<910 and pygame.mouse.get_pos()[1]<740:
+        if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
+                pressed_one=1
+                time.sleep(0.15)
+    if pygame.mouse.get_pos()[0]>910 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<1010 and pygame.mouse.get_pos()[1]<740:
+        if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
+                pressed_two=1
+                time.sleep(0.15)
+    delay += 1
+    clock.tick(60)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
+    org = []
+    sort_org = []
+    for i in range(20):
+        for j in range(20):
+            if world.organisms[i][j] != '':
+                org.append(world.organisms[i][j])
+    for i in org:
+        sort_org.append((i, i.ini, i.age))
+    size = len(sort_org)
+    for i in range(size):
+        for j in range(0, size - i - 1):
+            if sort_org[j][1] > sort_org[j + 1][1]:
+                sort_org[j], sort_org[j + 1] = sort_org[j + 1], sort_org[j]
+    sort_org = sort_org[::-1]
+    if pressed_one==1:
+        for i in sort_org:
+            i[0].action()
+    if pressed_two == 1:
+        print(len(sort_org))
+        print(counter)
+        if counter > len(sort_org)-1:
+            counter = 0
+        else:
+            sort_org[counter][0].action()
+            pressed_two = 0
+            counter += 1
 
-
-        # print("---------------------------------",delay,"---------------------------------")
-        world.drawWorld()
-        pygame.display.update()
-        If_pressed_one=0
+    # print("---------------------------------",delay,"---------------------------------")
+    world.drawWorld()
+    pygame.display.update()
+    pressed_one=0
 
 pygame.quit()

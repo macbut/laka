@@ -70,5 +70,5 @@ class Mouse(Animal):
 class Boar(Animal):
     image = pygame.image.load('resources/boar.png')
     strength = 5
-    ini = 3
+    ini = 2
 
