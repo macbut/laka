@@ -6,12 +6,43 @@ import pygame
 
 class Animal(Organism):
     def action(self):
-        move_to = self.gamble()
+        tomove = self.gamble()
+        col_org = World.organisms[tomove[0]][tomove[1]]
         def move():
-            World.organisms[move_to[0]][move_to[1]] = self
+            World.organisms[tomove[0]][tomove[1]] = self
             World.organisms[self.position[0]][self.position[1]] = ''
-            self.position = move_to
-        move()
+            self.position = tomove
+        def breeding():
+            empty = self.loc_check()
+            if len(empty) == 0:
+                return 0
+            else:
+                i = random.randint(0, len(empty) - 1)
+                loc = empty[i]
+                if loc == 'r':
+                    position = (self.position[0] + 1, self.position[1])
+                elif loc == 'l':
+                    position = (self.position[0] - 1, self.position[1])
+                elif loc == 'u':
+                    position = (self.position[0], self.position[1] - 1)
+                elif loc == 'd':
+                    position = (self.position[0], self.position[1] + 1)
+                World.organisms[position[0]][position[1]] = type(self)(position, World.sub1)
+        def collision():
+            if type(col_org) == type(self):
+                breeding()
+            else:
+                if self.strength > col_org.strength:
+                    print(self.strength,'  ',col_org.strength)
+                    move()
+                elif self.strength == col_org.strength:
+                    pass
+                else:
+                    World.organisms[self.position[0]][self.position[1]] = ''
+        if col_org == '':
+            move()
+        else:
+            collision()
         self.age+=1
 
 
