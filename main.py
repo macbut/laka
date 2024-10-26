@@ -51,12 +51,21 @@ while running:
         draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
         if If_pressed_one==1:
             org=[]
+            sort_org=[]
             for i in range(20):
                 for j in range(20):
                     if world.organisms[i][j] != '':
                         org.append(world.organisms[i][j])
             for i in org:
-                i.action()
+                sort_org.append((i,i.ini,i.age))
+            size=len(sort_org)
+            for i in range(size):
+                for j in range(0, size - i - 1):
+                    if sort_org[j][1] > sort_org[j + 1][1]:
+                        sort_org[j], sort_org[j + 1] = sort_org[j + 1], sort_org[j]
+            sort_org=sort_org[::-1]
+            for i in sort_org:
+                i[0].action()
         # print("---------------------------------",delay,"---------------------------------")
         world.drawWorld()
         pygame.display.update()

@@ -64,6 +64,7 @@ class Organism:
         Organism.current_id += 1
         self.position=position
         self.world=world
+        self.age=1
     def action(self):
         pass
     def colision(self):

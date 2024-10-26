@@ -6,7 +6,7 @@ from classes import Organism,World
 
 class Plant(Organism):
     strength = 0
-    initiative = 0
+    ini = 0
     def action(self):
         empty = self.loc_check()
         if type(self).__name__ == "Grass":
