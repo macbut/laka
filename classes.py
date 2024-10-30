@@ -59,6 +59,22 @@ class World:
                 else:
                     World.organisms[i][j].drawing()
 
+    def ruch(self):
+        org = []
+        sort_org = []
+        for i in range(20):
+            for j in range(20):
+                if World.organisms[i][j] != '':
+                    org.append(World.organisms[i][j])
+        for i in org:
+            sort_org.append((i, i.ini, i.age))
+        size = len(sort_org)
+        for i in range(size):
+            for j in range(0, size - i - 1):
+                if sort_org[j][1] > sort_org[j + 1][1]:
+                    sort_org[j], sort_org[j + 1] = sort_org[j + 1], sort_org[j]
+        return sort_org[::-1]
+
 class Organism:
     current_id = 1
     def __init__(self, position, world):
@@ -67,6 +83,7 @@ class Organism:
         self.position=position
         self.world=world
         self.age=1
+        self.akcja = False
     def action(self):
         pass
     def colision(self):

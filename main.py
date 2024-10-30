@@ -55,23 +55,12 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
-    org = []
-    sort_org = []
-    for i in range(20):
-        for j in range(20):
-            if world.organisms[i][j] != '':
-                org.append(world.organisms[i][j])
-    for i in org:
-        sort_org.append((i, i.ini, i.age))
-    size = len(sort_org)
-    for i in range(size):
-        for j in range(0, size - i - 1):
-            if sort_org[j][1] > sort_org[j + 1][1]:
-                sort_org[j], sort_org[j + 1] = sort_org[j + 1], sort_org[j]
-    sort_org = sort_org[::-1]
+    sort_org = world.ruch()
     if pressed_one==1:
         for i in sort_org:
             i[0].action()
+            sort_org = world.ruch()
+            print(i[0].__bases__)
     if pressed_two == 1:
         print(len(sort_org))
         print(counter)
