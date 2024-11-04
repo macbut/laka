@@ -91,7 +91,8 @@ class Organism:
     def drawing(self):
         self.world.blit(self.image,(self.position[0]*40,self.position[1]*40))
 
-    def loc_check(self, organisms=World.organisms):
+    def loc_check(self):
+        organisms = World.organisms
         position = self.position
         x = position[0]
         y = position[1]

@@ -59,11 +59,7 @@ while running:
     if pressed_one==1:
         for i in sort_org:
             i[0].action()
-            sort_org = world.ruch()
-            print(i[0].__bases__)
     if pressed_two == 1:
-        print(len(sort_org))
-        print(counter)
         if counter > len(sort_org)-1:
             counter = 0
         else:
