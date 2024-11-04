@@ -32,11 +32,9 @@ class Animal(Organism):
             if type(col_org) == type(self):
                 breeding()
             else:
-                if self.strength > col_org.strength:
+                if self.strength >= col_org.strength:
                     print(self.strength,'  ',col_org.strength)
                     move()
-                elif self.strength == col_org.strength:
-                    pass
                 else:
                     World.organisms[self.position[0]][self.position[1]] = ''
         if col_org == '':

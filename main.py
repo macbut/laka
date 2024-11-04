@@ -57,8 +57,13 @@ while running:
     draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
     sort_org = world.ruch()
     if pressed_one==1:
-        for i in sort_org:
-            i[0].action()
+        for i in sort_org[:]:
+            if World.organisms[i[0].position[0]][i[0].position[1]] == i[0]:
+                i[0].action()
+            else:
+                sort_org.remove(i)
+            sort_org.sort(key=lambda x: x[0].ini, reverse=True)
+        print(World.organisms)
     if pressed_two == 1:
         if counter > len(sort_org)-1:
             counter = 0

@@ -84,10 +84,6 @@ class Organism:
         self.world=world
         self.age=1
         self.akcja = False
-    def action(self):
-        pass
-    def colision(self):
-        pass
     def drawing(self):
         self.world.blit(self.image,(self.position[0]*40,self.position[1]*40))
 
