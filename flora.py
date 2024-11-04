@@ -10,9 +10,11 @@ class Plant(Organism):
     def action(self):
         empty = self.loc_check()
         if type(self).__name__ == "Grass":
-            cos = 6
-        else:
             cos = 10
+        elif type(self).__name__ == "Guarana":
+            cos = 15
+        else:
+            cos = 20
         if len(empty) == 0:
             return 0
         elif random.randint(1,cos)==2:

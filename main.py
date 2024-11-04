@@ -32,7 +32,7 @@ pressed_one=0
 pressed_two=0
 counter = 0
 # losowanie pozycji pierwszych organizmów
-for i in range(2):
+for i in range(3):
     for j in range(8):
         position = loc_gen(World.organisms)
         organism = organisms[j](position, sub1)
@@ -63,7 +63,6 @@ while running:
             else:
                 sort_org.remove(i)
             sort_org.sort(key=lambda x: x[0].ini, reverse=True)
-        print(World.organisms)
     if pressed_two == 1:
         if counter > len(sort_org)-1:
             counter = 0

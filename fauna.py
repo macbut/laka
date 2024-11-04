@@ -6,6 +6,9 @@ import pygame
 
 class Animal(Organism):
     def action(self):
+        if self.ate_gua == 0:
+            self.strength -= 3
+        self.ate_gua -= 1
         tomove = self.gamble()
         col_org = World.organisms[tomove[0]][tomove[1]]
         def move():
@@ -17,26 +20,79 @@ class Animal(Organism):
             if len(empty) == 0:
                 return 0
             else:
-                i = random.randint(0, len(empty) - 1)
-                loc = empty[i]
-                if loc == 'r':
-                    position = (self.position[0] + 1, self.position[1])
-                elif loc == 'l':
-                    position = (self.position[0] - 1, self.position[1])
-                elif loc == 'u':
-                    position = (self.position[0], self.position[1] - 1)
-                elif loc == 'd':
-                    position = (self.position[0], self.position[1] + 1)
-                World.organisms[position[0]][position[1]] = type(self)(position, World.sub1)
+                if len(empty) >= 2 and type(self).__name__ == 'Boar':
+                    for j in range(2):
+                        print(empty)
+                        i = random.randint(0, len(empty) - 1)
+                        loc = empty[i]
+                        print(loc)
+                        if loc == 'r':
+                            position = (self.position[0] + 1, self.position[1])
+                        elif loc == 'l':
+                            position = (self.position[0] - 1, self.position[1])
+                        elif loc == 'u':
+                            position = (self.position[0], self.position[1] - 1)
+                        elif loc == 'd':
+                            position = (self.position[0], self.position[1] + 1)
+                        World.organisms[position[0]][position[1]] = type(self)(position, World.sub1)
+                        empty.remove(loc)
+                else:
+                    i = random.randint(0, len(empty) - 1)
+                    loc = empty[i]
+                    if loc == 'r':
+                        position = (self.position[0] + 1, self.position[1])
+                    elif loc == 'l':
+                        position = (self.position[0] - 1, self.position[1])
+                    elif loc == 'u':
+                        position = (self.position[0], self.position[1] - 1)
+                    elif loc == 'd':
+                        position = (self.position[0], self.position[1] + 1)
+                    World.organisms[position[0]][position[1]] = type(self)(position, World.sub1)
         def collision():
             if type(col_org) == type(self):
                 breeding()
+            elif type(col_org).__name__ == 'Guarana':
+                self.strength += 3
+                self.ate_gua = 1
+                move()
+            elif type(col_org).__name__ == 'Berries':
+                World.organisms[self.position[0]][self.position[1]] = ''
+                World.organisms[tomove[0]][tomove[1]] = ''
             else:
                 if self.strength >= col_org.strength:
-                    print(self.strength,'  ',col_org.strength)
-                    move()
+                    if type(col_org).__name__ == 'Viper':
+                        World.organisms[self.position[0]][self.position[1]] = ''
+                        World.organisms[tomove[0]][tomove[1]] = ''
+                    elif type(col_org).__name__ == 'Mouse':
+                        if type(self).__name__ == 'Viper':
+                            move()
+                        else:
+                            empty = col_org.loc_check()
+                            if len(empty) == 0:
+                                move()
+                            else:
+                                i = random.randint(0, len(empty) - 1)
+                                loc = empty[i]
+                                if loc == 'r':
+                                    position = (col_org.position[0] + 1, col_org.position[1])
+                                elif loc == 'l':
+                                    position = (col_org.position[0] - 1, col_org.position[1])
+                                elif loc == 'u':
+                                    position = (col_org.position[0], col_org.position[1] - 1)
+                                elif loc == 'd':
+                                    position = (col_org.position[0], col_org.position[1] + 1)
+                                World.organisms[position[0]][position[1]] = col_org
+                                World.organisms[tomove[0]][tomove[1]] = self
+                                self.position = tomove
+                                col_org.position = position
+                    else:
+                        move()
                 else:
-                    World.organisms[self.position[0]][self.position[1]] = ''
+                    if type(self).__name__ == 'Viper':
+                        World.organisms[self.position[0]][self.position[1]] = ''
+                        World.organisms[tomove[0]][tomove[1]] = ''
+                    else:
+                        World.organisms[self.position[0]][self.position[1]] = ''
         if col_org == '':
             move()
         else:

@@ -83,7 +83,7 @@ class Organism:
         self.position=position
         self.world=world
         self.age=1
-        self.akcja = False
+        self.ate_gua = -1
     def drawing(self):
         self.world.blit(self.image,(self.position[0]*40,self.position[1]*40))
 
