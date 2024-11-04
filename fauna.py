@@ -22,10 +22,8 @@ class Animal(Organism):
             else:
                 if len(empty) >= 2 and type(self).__name__ == 'Boar':
                     for j in range(2):
-                        print(empty)
                         i = random.randint(0, len(empty) - 1)
                         loc = empty[i]
-                        print(loc)
                         if loc == 'r':
                             position = (self.position[0] + 1, self.position[1])
                         elif loc == 'l':
