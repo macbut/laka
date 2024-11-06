@@ -36,6 +36,17 @@ class World:
             helping_table.append('')
         organisms.append(helping_table)
 
+    dict = {
+        "Guarana": "Guarana",
+        "Berries": "Wilcze jagody",
+        "Wolf": "Wilk",
+        "Sheep": "Owca",
+        "Boar": "Dzik",
+        "Mouse": "Mysz",
+        "Viper": "Żmija",
+        "Grass": "Trawa"
+    }
+
     def __init__(self):
         pass
     def nextTurn(self):

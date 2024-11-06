@@ -50,7 +50,7 @@ class Animal(Organism):
         def collision():
             if type(col_org) == type(self):
                 breeding()
-                napis.append(f"{type(self).__name__} rozmnożył sie")
+                napis.append(f"{type(self).__name__} has breeded")
             elif type(col_org).__name__ == 'Guarana':
                 self.strength += 3
                 self.ate_gua = 1
@@ -67,6 +67,7 @@ class Animal(Organism):
                         if type(self).__name__ == 'Viper':
                             move()
                         else:
+                            print('mysz uciekla')
                             empty = col_org.loc_check()
                             if len(empty) == 0:
                                 move()
@@ -83,12 +84,13 @@ class Animal(Organism):
                                     position = (col_org.position[0], col_org.position[1] + 1)
                                 World.organisms[position[0]][position[1]] = col_org
                                 World.organisms[tomove[0]][tomove[1]] = self
+                                World.organisms[self.position[0]][self.position[1]] = ''
                                 self.position = tomove
                                 col_org.position = position
                     else:
                         move()
                     if type(col_org).__name__ != 'Grass':
-                        napis.append(f"{type(self).__name__} zjadł {type(col_org).__name__}")
+                        napis.append(f"{World.dict[type(self).__name__]} ate {World.dict[type(col_org).__name__]}")
                 else:
                     if type(self).__name__ == 'Viper':
                         World.organisms[self.position[0]][self.position[1]] = ''
