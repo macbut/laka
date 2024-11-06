@@ -3,6 +3,7 @@ import random
 from classes import Organism, World
 import pygame
 
+napis=[]
 
 class Animal(Organism):
     def action(self):
@@ -49,6 +50,7 @@ class Animal(Organism):
         def collision():
             if type(col_org) == type(self):
                 breeding()
+                napis.append(f"{type(self).__name__} rozmnożył sie")
             elif type(col_org).__name__ == 'Guarana':
                 self.strength += 3
                 self.ate_gua = 1
@@ -85,6 +87,8 @@ class Animal(Organism):
                                 col_org.position = position
                     else:
                         move()
+                    if type(col_org).__name__ != 'Grass':
+                        napis.append(f"{type(self).__name__} zjadł {type(col_org).__name__}")
                 else:
                     if type(self).__name__ == 'Viper':
                         World.organisms[self.position[0]][self.position[1]] = ''

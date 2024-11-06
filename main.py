@@ -5,7 +5,7 @@ import pygame
 import math
 import os
 from classes import Organism,World
-from fauna import Animal,Wolf,Sheep,Viper,Mouse,Boar
+from fauna import Animal,Wolf,Sheep,Viper,Mouse,Boar,napis
 from flora import Plant,Grass,Guarana,Berries
 from commands import draw_text,loc_gen
 
@@ -54,7 +54,17 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    draw_text(sub2,"Wilk zjadł owce",(10,10),(255,255,255))
+
+    y=10
+    zmiana=30
+    max_y=650
+    if len(napis)>0 and (y+len(napis)*zmiana)>max_y:
+        y=10
+        napis.clear()
+
+    for i,tekst in enumerate(napis):
+        draw_text(sub2,tekst,(10,y+i*zmiana),(255,255,255))
+
     sort_org = world.ruch()
     if pressed_one==1:
         for i in sort_org[:]:
