@@ -10,6 +10,7 @@ def draw_text(surface, text, position, color=(255, 255, 255)):
     text_surface = font.render(text, True, color)
     surface.blit(text_surface, position)
 
+#generowanie pozycji pierwszych organizmów na planszy
 def loc_gen(organisms):
     position = (random.randrange(20),random.randrange(20))
     if organisms[position[0]][position[1]] == '':

@@ -3,7 +3,7 @@ import random
 from classes import Organism, World
 import pygame
 
-napis=[]
+napis = World.napis
 
 class Animal(Organism):
     def action(self):
@@ -12,16 +12,19 @@ class Animal(Organism):
         self.ate_gua -= 1
         tomove = self.gamble()
         col_org = World.organisms[tomove[0]][tomove[1]]
+        #ruch
         def move():
             World.organisms[tomove[0]][tomove[1]] = self
             World.organisms[self.position[0]][self.position[1]] = ''
             self.position = tomove
+        #rozmnazanie
         def breeding():
             empty = self.loc_check()
             if len(empty) == 0:
                 return 0
             else:
-                if len(empty) >= 2 and type(self).__name__ == 'Boar':
+                napis.append(f"{type(self).__name__} has breeded on {self.position[0]},{self.position[1]}")
+                if len(empty) >= 2 and type(self).__name__ == 'Boar': #specjalna umiejetnosc dzika
                     for j in range(2):
                         i = random.randint(0, len(empty) - 1)
                         loc = empty[i]
@@ -50,24 +53,22 @@ class Animal(Organism):
         def collision():
             if type(col_org) == type(self):
                 breeding()
-                napis.append(f"{type(self).__name__} has breeded")
             elif type(col_org).__name__ == 'Guarana':
                 self.strength += 3
                 self.ate_gua = 1
                 move()
-            elif type(col_org).__name__ == 'Berries':
+            elif type(col_org).__name__ == 'Berries': #dzialanie wilczych jagod
                 World.organisms[self.position[0]][self.position[1]] = ''
                 World.organisms[tomove[0]][tomove[1]] = ''
             else:
                 if self.strength >= col_org.strength:
-                    if type(col_org).__name__ == 'Viper':
+                    if type(col_org).__name__ == 'Viper': #specjalna umiejetnosc zmiji
                         World.organisms[self.position[0]][self.position[1]] = ''
                         World.organisms[tomove[0]][tomove[1]] = ''
-                    elif type(col_org).__name__ == 'Mouse':
+                    elif type(col_org).__name__ == 'Mouse': #specjalna umiejetnosc myszy
                         if type(self).__name__ == 'Viper':
                             move()
                         else:
-                            print('mysz uciekla')
                             empty = col_org.loc_check()
                             if len(empty) == 0:
                                 move()
@@ -90,9 +91,9 @@ class Animal(Organism):
                     else:
                         move()
                     if type(col_org).__name__ != 'Grass':
-                        napis.append(f"{World.dict[type(self).__name__]} ate {World.dict[type(col_org).__name__]}")
+                        napis.append(f"{type(self).__name__} on {self.position[0]},{self.position[1]} ate {type(col_org).__name__}")
                 else:
-                    if type(self).__name__ == 'Viper':
+                    if type(self).__name__ == 'Viper': #specjalna umiejetnosc zmiji
                         World.organisms[self.position[0]][self.position[1]] = ''
                         World.organisms[tomove[0]][tomove[1]] = ''
                     else:

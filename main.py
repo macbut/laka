@@ -1,13 +1,16 @@
 import time
 import random
+from time import sleep
 
 import pygame
 import math
 import os
 from classes import Organism,World
-from fauna import Animal,Wolf,Sheep,Viper,Mouse,Boar,napis
+from fauna import Animal,Wolf,Sheep,Viper,Mouse,Boar
 from flora import Plant,Grass,Guarana,Berries
 from commands import draw_text,loc_gen
+
+napis = World.napis
 
 sub1 = World.sub1
 sub2 = World.sub2
@@ -36,11 +39,13 @@ for i in range(3):
     for j in range(8):
         position = loc_gen(World.organisms)
         organism = organisms[j](position, sub1)
+        organism.age = 2
         World.organisms[position[0]][position[1]] = organism
 
 running=True
 while running:
     world = World()
+    #sprawdzanie który przycisk został kliknięty
     if pygame.mouse.get_pos()[0]>810 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<910 and pygame.mouse.get_pos()[1]<740:
         if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
                 pressed_one=1
@@ -51,33 +56,38 @@ while running:
                 time.sleep(0.15)
     delay += 1
     clock.tick(60)
+    #zamykanie programu
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
+    #generowanie napisu
     y=10
     zmiana=30
     max_y=650
     if len(napis)>0 and (y+len(napis)*zmiana)>max_y:
-        y=10
-        napis.clear()
+        del napis[0]
 
     for i,tekst in enumerate(napis):
         draw_text(sub2,tekst,(10,y+i*zmiana),(255,255,255))
 
     sort_org = world.ruch()
+    #przycisk następna tura
     if pressed_one==1:
+        napis.clear()
         for i in sort_org[:]:
             if World.organisms[i[0].position[0]][i[0].position[1]] == i[0]:
                 i[0].action()
             else:
                 sort_org.remove(i)
             sort_org.sort(key=lambda x: x[0].ini, reverse=True)
+    #przycisk następny organizm
     if pressed_two == 1:
         if counter > len(sort_org)-1:
             counter = 0
         else:
-            sort_org[counter][0].action()
+            if sort_org[counter][2] != 1:
+                sort_org[counter][0].action()
             pressed_two = 0
             counter += 1
 

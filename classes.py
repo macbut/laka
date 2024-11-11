@@ -2,15 +2,19 @@ import random
 import pygame
 
 class World:
+    napis = []
     height = 800
     width = 1300
+    #pobieranie obrazów
     grass = pygame.image.load('resources/grassv2-inna-ramka.jpg')
     Button_next = pygame.image.load("resources/guzik_następny_na_szybko.png")
     Button_next_orgazm = pygame.image.load("resources/guzik_następny_na_szybko_ale_dwa.png")
 
+    #ustawianie wielkości ekranu
     screen = pygame.display.set_mode((width, height))
     canvas = pygame.Surface((width, height))
 
+    #tworzenie podziału ekranu
     laka = pygame.Rect(0, 0, 800, height)
     console = pygame.Rect(800, 0, 500, 0.85 * height)
     buttons = pygame.Rect(800, 0.85 * height, 500, 0.15 * height)
@@ -29,6 +33,7 @@ class World:
     sub2 = canvas.subsurface(console)
     sub3 = canvas.subsurface(buttons)
 
+    #tworzenie tablicy przechowującej organizmy
     organisms = []
     for i in range(20):
         helping_table = []
@@ -36,21 +41,11 @@ class World:
             helping_table.append('')
         organisms.append(helping_table)
 
-    dict = {
-        "Guarana": "Guarana",
-        "Berries": "Wilcze jagody",
-        "Wolf": "Wilk",
-        "Sheep": "Owca",
-        "Boar": "Dzik",
-        "Mouse": "Mysz",
-        "Viper": "Żmija",
-        "Grass": "Trawa"
-    }
-
     def __init__(self):
         pass
     def nextTurn(self):
         pass
+    #rysowanie swiata
     def drawWorld(self):
         World.screen.blit(World.sub1, (0, 0))
         World.screen.blit(World.sub2, (800, 0))
@@ -70,6 +65,7 @@ class World:
                 else:
                     World.organisms[i][j].drawing()
 
+    #sortowanie tablicy
     def ruch(self):
         org = []
         sort_org = []
@@ -84,6 +80,9 @@ class World:
             for j in range(0, size - i - 1):
                 if sort_org[j][1] > sort_org[j + 1][1]:
                     sort_org[j], sort_org[j + 1] = sort_org[j + 1], sort_org[j]
+                if sort_org[j][1] == sort_org[j + 1][1]:
+                    if sort_org[j][2] > sort_org[j + 1][2]:
+                        sort_org[j], sort_org[j + 1] = sort_org[j + 1], sort_org[j]
         return sort_org[::-1]
 
 class Organism:
@@ -98,6 +97,7 @@ class Organism:
     def drawing(self):
         self.world.blit(self.image,(self.position[0]*40,self.position[1]*40))
 
+    #sprawdzenie wolenych pól
     def loc_check(self):
         organisms = World.organisms
         position = self.position
@@ -131,6 +131,7 @@ class Organism:
 
         return empty
 
+    #wybieranie miejsca do ruchu organizmu
     def gamble(self):
         i = random.randint(1,4)
         if i == 1:

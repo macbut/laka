@@ -7,6 +7,7 @@ from classes import Organism,World
 class Plant(Organism):
     strength = 0
     ini = 0
+    #rozprzestrzenianie roslin
     def action(self):
         empty = self.loc_check()
         if type(self).__name__ == "Grass":
