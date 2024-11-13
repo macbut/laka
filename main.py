@@ -45,12 +45,26 @@ for i in range(3):
 running=True
 while running:
     world = World()
+
+    victory = True
+    for i in range(20):
+        if not victory:
+            break
+        for j in range(19):
+            if type(World.organisms[i][j]).__name__ != type(World.organisms[i][j+1]).__name__:
+                victory = False
+                break
+
+    print(victory)
+    if victory:
+        World.sub1.blit(World.royale, (400,400))
+
     #sprawdzanie który przycisk został kliknięty
-    if pygame.mouse.get_pos()[0]>810 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<910 and pygame.mouse.get_pos()[1]<740:
+    if pygame.mouse.get_pos()[0]>810 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<1010 and pygame.mouse.get_pos()[1]<790:
         if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
                 pressed_one=1
                 time.sleep(0.15)
-    if pygame.mouse.get_pos()[0]>910 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<1010 and pygame.mouse.get_pos()[1]<740:
+    if pygame.mouse.get_pos()[0]>1010 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<1210 and pygame.mouse.get_pos()[1]<790:
         if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
                 pressed_two=1
                 time.sleep(0.15)
