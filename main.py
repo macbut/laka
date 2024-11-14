@@ -26,13 +26,16 @@ pygame.mixer.init()
 pygame.mixer.music.load(os.path.join("resources/Main them.mp3"))
 pygame.mixer.music.set_volume(0.17)
 pygame.mixer.music.play(-1)
+vic_sound = pygame.mixer.Sound("resources/victory-royale.mp3")
+vic_sound.set_volume(0.1)
+vic_count = 0
 
 delay=0
 os.environ['SDL_AUDIODRIVER'] = 'dsp'
 pygame.init()
 clock = pygame.time.Clock()
-pressed_one=0
-pressed_two=0
+pressed_one=False
+pressed_two=False
 counter = 0
 # losowanie pozycji pierwszych organizmów
 for i in range(3):
@@ -55,18 +58,21 @@ while running:
                 victory = False
                 break
 
-    print(victory)
     if victory:
-        World.sub1.blit(World.royale, (400,400))
+        World.sub1.blit(World.royale, (150,298))
+        vic_count+=1
+        if vic_count == 1:
+            vic_sound.play()
+            pygame.mixer.music.stop()
 
     #sprawdzanie który przycisk został kliknięty
     if pygame.mouse.get_pos()[0]>810 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<1010 and pygame.mouse.get_pos()[1]<790:
         if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
-                pressed_one=1
+                pressed_one=True
                 time.sleep(0.15)
     if pygame.mouse.get_pos()[0]>1010 and pygame.mouse.get_pos()[1]>690 and pygame.mouse.get_pos()[0]<1210 and pygame.mouse.get_pos()[1]<790:
         if (pygame.mouse.get_pressed(num_buttons=3)[0])==True:
-                pressed_two=1
+                pressed_two=True
                 time.sleep(0.15)
     delay += 1
     clock.tick(60)
@@ -87,7 +93,7 @@ while running:
 
     sort_org = world.ruch()
     #przycisk następna tura
-    if pressed_one==1:
+    if pressed_one:
         napis.clear()
         for i in sort_org[:]:
             if World.organisms[i[0].position[0]][i[0].position[1]] == i[0]:
@@ -96,13 +102,13 @@ while running:
                 sort_org.remove(i)
             sort_org.sort(key=lambda x: x[0].ini, reverse=True)
     #przycisk następny organizm
-    if pressed_two == 1:
+    if pressed_two:
         if counter > len(sort_org)-1:
             counter = 0
         else:
             if sort_org[counter][2] != 1:
                 sort_org[counter][0].action()
-            pressed_two = 0
+            pressed_two = False
             counter += 1
 
     # print("---------------------------------",delay,"---------------------------------")

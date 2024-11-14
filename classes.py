@@ -9,7 +9,7 @@ class World:
     grass = pygame.image.load('resources/grassv2-inna-ramka.jpg')
     Button_next = pygame.image.load("resources/nextturn.png")
     Button_next_orgazm = pygame.image.load("resources/nextorganism.png")
-    royale = pygame.image.load("resources/VictoryRoyale.png")
+    royale = pygame.image.load("resources/VicRoy2.png")
 
     #ustawianie wielkości ekranu
     screen = pygame.display.set_mode((width, height))
