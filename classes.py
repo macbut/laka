@@ -170,3 +170,4 @@ class Organism:
                 return self.position[0],self.position[1]-1
             else:
                 return self.gamble()
+
