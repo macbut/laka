@@ -8,7 +8,6 @@ import os
 from classes import Organism,World
 from fauna import Animal,Wolf,Sheep,Viper,Mouse,Boar
 from flora import Plant,Grass,Guarana,Berries
-from commands import draw_text,loc_gen
 
 napis = World._napis
 
@@ -37,18 +36,17 @@ clock = pygame.time.Clock()
 pressed_one=False
 pressed_two=False
 counter = 0
+world = World()
 # losowanie pozycji pierwszych organizmów
 for i in range(3):
     for j in range(8):
-        position = loc_gen(World._organisms)
+        position = world.loc_gen(World._organisms)
         organism = organisms[j](position, sub1)
         organism.age = 2
         World._organisms[position[0]][position[1]] = organism
 
 running=True
 while running:
-    world = World()
-
     victory = True
     for i in range(20):
         if not victory:
@@ -89,7 +87,7 @@ while running:
         del napis[0]
 
     for i,tekst in enumerate(napis):
-        draw_text(sub2,tekst,(10,y+i*zmiana),(255,255,255))
+        world.draw_text(sub2,tekst,(10,y+i*zmiana),(255,255,255))
 
     sort_org = world.ruch()
     #przycisk następna tura
