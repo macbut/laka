@@ -17,3 +17,4 @@ def loc_gen(organisms):
         return position
     else:
         return loc_gen(organisms)
+        #jebać czarnych
