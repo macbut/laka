@@ -10,11 +10,11 @@ from fauna import Animal,Wolf,Sheep,Viper,Mouse,Boar
 from flora import Plant,Grass,Guarana,Berries
 from commands import draw_text,loc_gen
 
-napis = World.napis
+napis = World._napis
 
-sub1 = World.sub1
-sub2 = World.sub2
-sub3 = World.sub3
+sub1 = World._sub1
+sub2 = World._sub2
+sub3 = World._sub3
 
 organisms = [Grass,Guarana,Berries,Wolf,Sheep,Viper,Mouse,Boar]
 
@@ -40,10 +40,10 @@ counter = 0
 # losowanie pozycji pierwszych organizmów
 for i in range(3):
     for j in range(8):
-        position = loc_gen(World.organisms)
+        position = loc_gen(World._organisms)
         organism = organisms[j](position, sub1)
         organism.age = 2
-        World.organisms[position[0]][position[1]] = organism
+        World._organisms[position[0]][position[1]] = organism
 
 running=True
 while running:
@@ -54,12 +54,12 @@ while running:
         if not victory:
             break
         for j in range(19):
-            if type(World.organisms[i][j]).__name__ != type(World.organisms[i][j+1]).__name__:
+            if type(World._organisms[i][j]).__name__ != type(World._organisms[i][j + 1]).__name__:
                 victory = False
                 break
 
     if victory:
-        World.sub1.blit(World.royale, (150,298))
+        World._sub1.blit(World._royale, (150, 298))
         vic_count+=1
         if vic_count == 1:
             vic_sound.play()
@@ -96,7 +96,7 @@ while running:
     if pressed_one:
         napis.clear()
         for i in sort_org[:]:
-            if World.organisms[i[0].position[0]][i[0].position[1]] == i[0]:
+            if World._organisms[i[0].position[0]][i[0].position[1]] == i[0]:
                 i[0].action()
             else:
                 sort_org.remove(i)

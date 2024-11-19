@@ -3,7 +3,7 @@ import random
 from classes import Organism, World
 import pygame
 
-napis = World.napis
+napis = World._napis
 
 class Animal(Organism):
     def action(self):
@@ -11,11 +11,11 @@ class Animal(Organism):
             self.strength -= 3
         self.ate_gua -= 1
         tomove = self.gamble()
-        col_org = World.organisms[tomove[0]][tomove[1]]
+        col_org = World._organisms[tomove[0]][tomove[1]]
         #ruch
         def move():
-            World.organisms[tomove[0]][tomove[1]] = self
-            World.organisms[self.position[0]][self.position[1]] = ''
+            World._organisms[tomove[0]][tomove[1]] = self
+            World._organisms[self.position[0]][self.position[1]] = ''
             self.position = tomove
         #rozmnazanie
         def breeding():
@@ -36,7 +36,7 @@ class Animal(Organism):
                             position = (self.position[0], self.position[1] - 1)
                         elif loc == 'd':
                             position = (self.position[0], self.position[1] + 1)
-                        World.organisms[position[0]][position[1]] = type(self)(position, World.sub1)
+                        World._organisms[position[0]][position[1]] = type(self)(position, World._sub1)
                         empty.remove(loc)
                 else:
                     i = random.randint(0, len(empty) - 1)
@@ -49,7 +49,7 @@ class Animal(Organism):
                         position = (self.position[0], self.position[1] - 1)
                     elif loc == 'd':
                         position = (self.position[0], self.position[1] + 1)
-                    World.organisms[position[0]][position[1]] = type(self)(position, World.sub1)
+                    World._organisms[position[0]][position[1]] = type(self)(position, World._sub1)
         def collision():
             if type(col_org) == type(self):
                 breeding()
@@ -58,13 +58,13 @@ class Animal(Organism):
                 self.ate_gua = 1
                 move()
             elif type(col_org).__name__ == 'Berries': #dzialanie wilczych jagod
-                World.organisms[self.position[0]][self.position[1]] = ''
-                World.organisms[tomove[0]][tomove[1]] = ''
+                World._organisms[self.position[0]][self.position[1]] = ''
+                World._organisms[tomove[0]][tomove[1]] = ''
             else:
                 if self.strength >= col_org.strength:
                     if type(col_org).__name__ == 'Viper': #specjalna umiejetnosc zmiji
-                        World.organisms[self.position[0]][self.position[1]] = ''
-                        World.organisms[tomove[0]][tomove[1]] = ''
+                        World._organisms[self.position[0]][self.position[1]] = ''
+                        World._organisms[tomove[0]][tomove[1]] = ''
                     elif type(col_org).__name__ == 'Mouse': #specjalna umiejetnosc myszy
                         if type(self).__name__ == 'Viper':
                             move()
@@ -83,9 +83,9 @@ class Animal(Organism):
                                     position = (col_org.position[0], col_org.position[1] - 1)
                                 elif loc == 'd':
                                     position = (col_org.position[0], col_org.position[1] + 1)
-                                World.organisms[position[0]][position[1]] = col_org
-                                World.organisms[tomove[0]][tomove[1]] = self
-                                World.organisms[self.position[0]][self.position[1]] = ''
+                                World._organisms[position[0]][position[1]] = col_org
+                                World._organisms[tomove[0]][tomove[1]] = self
+                                World._organisms[self.position[0]][self.position[1]] = ''
                                 self.position = tomove
                                 col_org.position = position
                     else:
@@ -94,10 +94,10 @@ class Animal(Organism):
                         napis.append(f"{type(self).__name__} on {self.position[0]},{self.position[1]} ate {type(col_org).__name__}")
                 else:
                     if type(self).__name__ == 'Viper': #specjalna umiejetnosc zmiji
-                        World.organisms[self.position[0]][self.position[1]] = ''
-                        World.organisms[tomove[0]][tomove[1]] = ''
+                        World._organisms[self.position[0]][self.position[1]] = ''
+                        World._organisms[tomove[0]][tomove[1]] = ''
                     else:
-                        World.organisms[self.position[0]][self.position[1]] = ''
+                        World._organisms[self.position[0]][self.position[1]] = ''
         if col_org == '':
             move()
         else:

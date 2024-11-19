@@ -2,45 +2,45 @@ import random
 import pygame
 
 class World:
-    napis = []
-    height = 800
-    width = 1300
+    _napis = []
+    _height = 800
+    _width = 1300
     #pobieranie obrazów
-    grass = pygame.image.load('resources/grassv2-inna-ramka.jpg')
-    Button_next = pygame.image.load("resources/nextturn.png")
-    Button_next_orgazm = pygame.image.load("resources/nextorganism.png")
-    royale = pygame.image.load("resources/VicRoy2.png")
+    _grass = pygame.image.load('resources/grassv2-inna-ramka.jpg')
+    _Button_next = pygame.image.load("resources/nextturn.png")
+    _Button_next_orgazm = pygame.image.load("resources/nextorganism.png")
+    _royale = pygame.image.load("resources/VicRoy2.png")
 
     #ustawianie wielkości ekranu
-    screen = pygame.display.set_mode((width, height))
-    canvas = pygame.Surface((width, height))
+    _screen = pygame.display.set_mode((_width, _height))
+    _canvas = pygame.Surface((_width, _height))
 
     #tworzenie podziału ekranu
-    laka = pygame.Rect(0, 0, 800, height)
-    console = pygame.Rect(800, 0, 500, 0.85 * height)
-    buttons = pygame.Rect(800, 0.85 * height, 500, 0.15 * height)
+    _laka = pygame.Rect(0, 0, 800, _height)
+    _console = pygame.Rect(800, 0, 500, 0.85 * _height)
+    _buttons = pygame.Rect(800, 0.85 * _height, 500, 0.15 * _height)
 
-    background = pygame.Surface((800, height))
+    _background = pygame.Surface((800, _height))
     for i in range(0, 800, 40):
         for j in range(0, 800, 40):
-            background.blit(grass, (i, j))
+            _background.blit(_grass, (i, j))
 
-    background2 = pygame.Surface((500, 0.85 * height))
-    background2.fill((0, 0, 0))
-    background3 = pygame.Surface((500, 0.15 * height))
-    background3.fill((255, 255, 255))
+    _background2 = pygame.Surface((500, 0.85 * _height))
+    _background2.fill((0, 0, 0))
+    _background3 = pygame.Surface((500, 0.15 * _height))
+    _background3.fill((255, 255, 255))
 
-    sub1 = canvas.subsurface(laka)
-    sub2 = canvas.subsurface(console)
-    sub3 = canvas.subsurface(buttons)
+    _sub1 = _canvas.subsurface(_laka)
+    _sub2 = _canvas.subsurface(_console)
+    _sub3 = _canvas.subsurface(_buttons)
 
     #tworzenie tablicy przechowującej organizmy
-    organisms = []
+    _organisms = []
     for i in range(20):
         helping_table = []
         for j in range(20):
             helping_table.append('')
-        organisms.append(helping_table)
+        _organisms.append(helping_table)
 
     def __init__(self):
         pass
@@ -48,23 +48,23 @@ class World:
         pass
     #rysowanie swiata
     def drawWorld(self):
-        World.screen.blit(World.sub1, (0, 0))
-        World.screen.blit(World.sub2, (800, 0))
-        World.screen.blit(World.sub3, (800, 0.85 * World.height))
-        World.sub1.blit(World.background, (0, 0))
-        World.sub2.blit(World.background2, (0, 0))
-        World.sub3.blit(World.background3, (0, 0))
-        World.sub3.blit(World.background3, (0, 0))
-        World.canvas.blit(World.Button_next,(810,0.85 * World.height + 10))
-        World.canvas.blit(World.Button_next_orgazm, (1010, 0.85 * World.height + 10))
-        pygame.draw.line(World.sub1, (255, 255, 255), (800, 0), (800, World.height), 1)
-        pygame.draw.line(World.sub2, (255, 255, 255), (0, 0), (0, World.height), 1)
+        World._screen.blit(World._sub1, (0, 0))
+        World._screen.blit(World._sub2, (800, 0))
+        World._screen.blit(World._sub3, (800, 0.85 * World._height))
+        World._sub1.blit(World._background, (0, 0))
+        World._sub2.blit(World._background2, (0, 0))
+        World._sub3.blit(World._background3, (0, 0))
+        World._sub3.blit(World._background3, (0, 0))
+        World._canvas.blit(World._Button_next, (810, 0.85 * World._height + 10))
+        World._canvas.blit(World._Button_next_orgazm, (1010, 0.85 * World._height + 10))
+        pygame.draw.line(World._sub1, (255, 255, 255), (800, 0), (800, World._height), 1)
+        pygame.draw.line(World._sub2, (255, 255, 255), (0, 0), (0, World._height), 1)
         for i in range(20):
             for j in range(20):
-                if World.organisms[i][j] == '':
+                if World._organisms[i][j] == '':
                     pass
                 else:
-                    World.organisms[i][j].drawing()
+                    World._organisms[i][j].drawing()
 
     #sortowanie tablicy
     def ruch(self):
@@ -72,8 +72,8 @@ class World:
         sort_org = []
         for i in range(20):
             for j in range(20):
-                if World.organisms[i][j] != '':
-                    org.append(World.organisms[i][j])
+                if World._organisms[i][j] != '':
+                    org.append(World._organisms[i][j])
         for i in org:
             sort_org.append((i, i.ini, i.age))
         size = len(sort_org)
@@ -87,10 +87,10 @@ class World:
         return sort_org[::-1]
 
 class Organism:
-    current_id = 1
+    _current_id = 1
     def __init__(self, position, world):
-        self.id=Organism.current_id
-        Organism.current_id += 1
+        self.id=Organism._current_id
+        Organism._current_id += 1
         self.position=position
         self.world=world
         self.age=1
@@ -100,7 +100,7 @@ class Organism:
 
     #sprawdzenie wolenych pól
     def loc_check(self):
-        organisms = World.organisms
+        organisms = World._organisms
         position = self.position
         x = position[0]
         y = position[1]

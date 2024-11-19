@@ -29,7 +29,7 @@ class Plant(Organism):
                 position = (self.position[0],self.position[1]-1)
             elif loc == 'd':
                 position = (self.position[0],self.position[1]+1)
-            World.organisms[position[0]][position[1]] = type(self)(position,World.sub1)
+            World._organisms[position[0]][position[1]] = type(self)(position, World._sub1)
         else:
             # nie udało się
             return 0
